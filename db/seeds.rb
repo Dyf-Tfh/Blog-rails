@@ -17,6 +17,8 @@ end
     title: Faker::Book.title,
     content: Faker::ChuckNorris.fact,
     user_id: new_user.id,
+    # .order("RANDOM()").firs.id renvoit l'id d'un élément de la table
+    # Je vais l'utiliser très souvent :P
     category_id: Category.order("RANDOM()").first.id
   )
 end
