@@ -27,3 +27,9 @@ end
     article_id: Article.order("RANDOM()").first.id
   )
 end
+15.times do
+  Like.create(
+    user_id: User.order("RANDOM()").first.id,
+    article_id: Article.order("RANDOM()").first.id
+  )
+end
