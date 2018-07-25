@@ -12,7 +12,9 @@ require 'faker'
 end
 
 10.times do
+  # créer les users 
   new_user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email)
+  # créer les articles, qui sont liés aux user avec user_id
   wooof = Article.create(
     title: Faker::Book.title,
     content: Faker::ChuckNorris.fact,
@@ -23,6 +25,7 @@ end
   )
 end
 15.times do
+  # créer les commentaires
   Comment.create(
     content: Faker::GreekPhilosophers.quote,
     user_id: User.order("RANDOM()").first.id,
@@ -30,6 +33,8 @@ end
   )
 end
 15.times do
+  # Créer les likes
+  # qui sont liés à la fois aux user et aux articles
   Like.create(
     user_id: User.order("RANDOM()").first.id,
     article_id: Article.order("RANDOM()").first.id
