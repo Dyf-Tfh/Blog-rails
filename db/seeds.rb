@@ -7,7 +7,23 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+5.times do |index|
+  Category.create(name: "Category#{index}")
+end
+
 10.times do
-  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email)
-  article = Article.create(title: Faker::Book.title, content: Faker::ChuckNorris.fact, user_id: user)
+  new_user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email)
+  wooof = Article.create(
+    title: Faker::Book.title,
+    content: Faker::ChuckNorris.fact,
+    user_id: new_user.id,
+    category_id: Category.order("RANDOM()").first.id
+  )
+end
+15.times do
+  Comment.create(
+    content: Faker::GreekPhilosophers.quote,
+    user_id: User.order("RANDOM()").first.id,
+    article_id: Article.order("RANDOM()").first.id
+  )
 end
